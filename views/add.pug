@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Document
+        if datas
+            link(rel="stylesheet" href="../style/add.css")
+        else    
+            link(rel="stylesheet" href="style/add.css")
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" )
+        link(href='https://fonts.googleapis.com/css?family=Megrim|Nunito+Sans:400,900' rel='stylesheet')
+        link(rel='icon' href='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/155/ear-of-maize_1f33d.png')
+
+    body
+        .navigation
+            input#navi-toggle.navigation__checkbox(type='checkbox')
+            label.navigation__button(for='navi-toggle')
+                span.navigation__icon &nbsp;
+            .navigation__background &nbsp;
+            nav.navigation__nav
+                ul.navigation__list
+                    li.navigation__item
+                        a.navigation__link(href='/')
+                            span 01
+                            | Telefonlar
+                    if user
+                        li.navigation__item
+                            a.navigation__link(href='/userSettings')
+                                span 02
+                                | Sozlamalar
+                        li.navigation__item
+                            a.navigation__link(href='/add')
+                                span 03
+                                | E'lon berish
+                        li.navigation__item
+                            a.navigation__link(href='/logout')
+                                span 04
+                                | Chiqish
+                    else            
+                        li.navigation__item
+                            a.navigation__link(href='/login')
+                                span 02
+                                | Kirish
+                        li.navigation__item
+                            a.navigation__link(href='/register')
+                                span 03
+                                | Ro'yxatdan o'tish
+        .container
+            != messages('message', locals)
+            if errors
+                each error in errors
+                    div(class="alert alert-danger") #{error.msg}
+            .row
+                .col-lg-12.brand
+                        h1(style="text-align:center;")= type 
+                            i.fa.fa-pen-alt 
+            form(method="POST" enctype="multipart/form-data")
+                if datas
+                    .form-group
+                        input.form-control(type='text' class='mt-lg-2' name='title' aria-describedby='emailHelp' placeholder='Telefon nomi' value= datas.title)
+                        input.form-control(type='text' class='mt-lg-2' name='price' aria-describedby='emailHelp' placeholder='Telefon narxi' value= datas.price)
+                        input.form-control(type='text' class='mt-lg-2' name='memory' aria-describedby='emailHelp' placeholder='Telefon xotirasi' value= datas.memory)
+                        input.form-control(type='text' class='mt-lg-2' name='comment' aria-describedby='emailHelp' placeholder='Telefon haqida' value= datas.comment)
+                        input.form-control(type='number' class='mt-lg-2' name='sale' aria-describedby='emailHelp' placeholder='Chegirma' value= datas.sale)
+                        input.form-control(type='text' class='mt-lg-2' name='color' aria-describedby='emailHelp' placeholder='Rangi' value= datas.color)
+                        input.form-control(type='file' class='mt-lg-2' name='photo' aria-describedby='emailHelp' placeholder='Kitobning rasmi' value= datas.photo)
+                    button.btn.btn-primary(type='submit') Submit
+                else 
+                    .form-group
+                        input.form-control(type='text' class='mt-lg-2' name='title' aria-describedby='emailHelp' placeholder='Telefon nomi')
+                        input.form-control(type='text' class='mt-lg-2' name='price' aria-describedby='emailHelp' placeholder='Telefon narxi')
+                        input.form-control(type='text' class='mt-lg-2' name='memory' aria-describedby='emailHelp' placeholder='Telefon xotirasi')
+                        input.form-control(type='number' class='mt-lg-2' name='sale' aria-describedby='emailHelp' placeholder='Chegirma')
+                        input.form-control(type='text' class='mt-lg-2' name='color' aria-describedby='emailHelp' placeholder='Rangi')
+                        textarea.form-control(class='mt-lg-2' name='comment' aria-describedby='emailHelp' placeholder='Telefon haqida')
+                        input.form-control(type='file' class='mt-lg-2' name='photo' aria-describedby='emailHelp' placeholder='Kitobning rasmi')
+                    button.btn.btn-primary(type='submit') Submit
+

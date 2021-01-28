@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+        link(rel="stylesheet" href="style/index.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" )
+        link(href='https://fonts.googleapis.com/css?family=Megrim|Nunito+Sans:400,900' rel='stylesheet')
+        link(rel='icon' href='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/155/ear-of-maize_1f33d.png')
+        title= title
+    body
+        .navigation
+            input#navi-toggle.navigation__checkbox(type='checkbox')
+            label.navigation__button(for='navi-toggle')
+                span.navigation__icon &nbsp;
+            .navigation__background &nbsp;
+            nav.navigation__nav
+                ul.navigation__list
+                    li.navigation__item
+                        a.navigation__link(href='/')
+                            span 01
+                            | Telefonlar
+                    if user
+                        li.navigation__item
+                            a.navigation__link(href='/userSettings')
+                                span 02
+                                | Sozlamalar
+                        li.navigation__item
+                            a.navigation__link(href='/add')
+                                span 03
+                                | E'lon berish
+                        li.navigation__item
+                            a.navigation__link(href='/logout')
+                                span 04
+                                | Chiqish
+                    else            
+                        li.navigation__item
+                            a.navigation__link(href='/login')
+                                span 02
+                                | Kirish
+                        li.navigation__item
+                            a.navigation__link(href='/register')
+                                span 03
+                                | Ro'yxatdan o'tish
+        .container
+            .row
+                .col-lg-8.brand.col-12
+                    a(href="/")
+                        h1 &#x1F4E6; Telefonlar 
+                            i.fa.fa-mobile-alt
+                .col-lg-4.col-12
+                    form(action="/search").form-inline
+                        input.form-control.mr-2(type='search' name="search" placeholder='Qidirish...' aria-label='Search')
+                        button.btn.btn-success.my-2.my-0(type='submit') 
+                            i.fa.fa-search
+            .cards-container
+                each db in datas
+                    figure.cardd.carddd
+                        .card__emoji
+                            img(src= db.photo, alt="hdfghdfh")
+                        .card__title-box
+                            h2.card__title= db.title
+                        .card__details
+                            .card__detail-box
+                                if !db.sale == ''
+                                    h6.card__detail.card__detail--organic 
+                                        | Chegirma: 
+                                        span= db.sale 
+                                        |%
+
+                            .card__detail-box
+                                h6.card__detail.card__detail--price
+                                    i.fa.fa-sd-card 
+                                        span= db.memory  
+                                        |GB
+                            .card__detail-box
+                                h6.card__detail.card__detail--price
+                                    i.fa.fa-palette  
+                                        span= db.color 
+
+                            .card__detail-box
+                                h6.card__detail.card__detail--price
+                                    i.fa.fa-money-check-alt  
+                                        span= db.price  
+                                        |$
+                        a.card__link(href="/product/"+db.id)
+                            span
+                                | Ko'rish 
+                                i.emoji-right &#x1F449;
+
+                nav(aria-label='Page navigation example')
+                    ul.pagination
+                        li.page-item
+                            if pages
+                                -for(var i=1;i<=pages;i++)
+                                    a.page-link(href='/?page='+i)= i
+
+
+
+
+

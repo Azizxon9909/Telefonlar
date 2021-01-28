@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+        link(rel="stylesheet" type="text/css" href="../style/style.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" )
+        link(href='https://fonts.googleapis.com/css?family=Megrim|Nunito+Sans:400,900' rel='stylesheet')
+        link(rel='icon' href='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/155/ear-of-maize_1f33d.png')
+        title= title
+
+    body
+        .navigation
+            input#navi-toggle.navigation__checkbox(type='checkbox')
+            label.navigation__button(for='navi-toggle')
+                span.navigation__icon &nbsp;
+            .navigation__background &nbsp;
+            nav.navigation__nav
+                ul.navigation__list
+                    li.navigation__item
+                        a.navigation__link(href='/')
+                            span 01
+                            | Telefonlar
+                    if user
+                        li.navigation__item
+                            a.navigation__link(href='/userSettings')
+                                span 02
+                                | Sozlamalar
+                        li.navigation__item
+                            a.navigation__link(href='/add')
+                                span 03
+                                | E'lon berish
+                        li.navigation__item
+                            a.navigation__link(href='/logout')
+                                span 04
+                                | Chiqish
+                    else            
+                        li.navigation__item
+                            a.navigation__link(href='/login')
+                                span 02
+                                | Kirish
+                        li.navigation__item
+                            a.navigation__link(href='/register')
+                                span 03
+                                | Ro'yxatdan o'tish
+        .container
+            h1 Telefonlar 
+                i.fa.fa-mobile-alt
+            figure.product
+                if !datas.sale == ''
+                    .product__organic
+                        h5= datas.sale + " %" 
+
+                a.product__back(href='/')
+                    span.emoji-left &#x1F448;
+                    | Back
+                .product__hero
+                    img(src="../"+datas.photo, alt="dhdfghdfghdfghdgh")
+                    img(src="../"+datas.photo, alt="dhdfghdfghdfghdgh")
+                h2.product__name= datas.title
+                .product__details
+                    p
+                        span.emoji-left
+                            i.fa.fa-sd-card 
+                                span= datas.memory  
+                                    |GB
+                    p
+                        span.emoji-left
+                            i.fa.fa-palette  
+                                span= datas.color  
+
+                    p
+                        span.emoji-left
+                            i.fa.fa-calendar-day 
+                                span= datas.dateNow.toDateString()  
+                    p
+                        span.emoji-left.saleing3
+                            i.fa.fa-money-check-alt    
+                                if !datas.sale == ''
+                                    del.span= datas.price 
+                                    |$ -> 
+                                span=datas.price-(datas.price*datas.sale/100)  
+                                    |$
+                    p
+                        span.emoji-left
+                            i.fa.fa-user 
+                                span= info.name
+                    
+                    p
+                        span.emoji-left
+                            i.fa.fa-eye 
+                                span= datas.like
+
+
+                    
+                h2(class="product__link" numId ='/product/'+datas.id )
+                    i.mr-lg-4.fa.fa-phone-square-alt 
+                    span Nomerni Korish
+                p.product__description= datas.comment
+    script( src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous")
+    script( src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous")
+    script( src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous")
+    script(src='../js/num.js')      
+                
+
+
+
+
+
+
