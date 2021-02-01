@@ -41,6 +41,7 @@ router.post("/add", uploads, (req, res) => {
   req.checkBody("memory", "Maxsulotning hotirasini kiriting").notEmpty()
   req.checkBody("comment", "Maxsulotning haqida kamida 10ta bo'lishi kerak").notEmpty().isLength({ min: 10 });
   req.checkBody("color", "Maxsulotning rangini kiriting").notEmpty();
+  req.checkBody("photo", "Maxsulotning suratini kiriting")
 
   const errors = req.validationErrors();
   if (errors) {
